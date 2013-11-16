@@ -32,18 +32,12 @@ UX:
 TABLES:
 
 User
-has_many :events, :through => :event_user
-has_many :event_users
+has_many :events
+has_many 
 id 
 
-Event_User
-belongs_to :user 
-belongs_to :event
-id          user_id     event_id
-
 Event
-has_many :users, :through => :event_user
-has_many :event_users
+has_many :users
 has_many :categories
 id 
 
@@ -56,12 +50,18 @@ id          event_id
 
 Item
 belongs_to :category
-belongs_to :guest
-id        category_id   quantity       
+has_many :guests, :through => item_guest
+has_many :item_guests
+id        category_id     quantity
 
+Item_Guest
+belongs_to :item
+belongs_to :guest
+id 					item_id 			guest_id
 
 Guest 
-has_many :items
+has_many :items, :through => item_guest
+has_many :item_guests
 id
 
 

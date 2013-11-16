@@ -1,0 +1,23 @@
+<h1><%= @event.name %></h1>
+
+<% @event.categories.each do |category| %>
+	<h2><%= category.name %></h2>
+	<ul>
+	<% category.items.each do |item| %>
+		<li><strong><%= item.name %></strong>
+		<% item.guests.each do |guest| %>
+			<%= guest.name %>
+			<form>
+			<input type="hidden" name="item_id" value="<%= item.id %>"></input>
+			<submit><%= link_to "Destroy", item, :method => :delete %></submit>
+		</form>
+		</li>
+		<% end %>
+	<% end %>
+</ul>
+<% end %>
+
+
+
+
+<%= link_to "Edit", edit_event_path(@event) %>
